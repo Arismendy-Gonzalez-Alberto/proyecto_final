@@ -48,12 +48,13 @@ if respuesta.status_code == 200:
         
         # DESCRIPCIÓN BREVE
         description = "Sin descripción"
+
         # Buscar descripción en diferentes lugares
         for selector in ['p', 'div.desc', 'div.description', 'div.excerpt', 'span.desc']:
             desc_tag = novela_container.select_one(selector)
             if desc_tag:
                 desc_text = desc_tag.get_text(strip=True)
-                if len(desc_text) > 20:  # Asegurar que sea una descripción real
+                if len(desc_text) > 20:  
                     description = desc_text[:150] + "..." if len(desc_text) > 150 else desc_text
                     break
         
@@ -77,7 +78,7 @@ if respuesta.status_code == 200:
     if novels_list:
         print(f"Encontradas {len(novels_list)} novelas:\n")
         for i, novel in enumerate(novels_list, 1):
-            print(f"{i}. {novel['title']}\n")
+            print(f"{i}. {novel['title']}")
             print(f"Enlace: {novel['url']}\n")
             print(f"Vistas: {novel['views']}\n")
             print(f"Descripción: {novel['description']}\n")
